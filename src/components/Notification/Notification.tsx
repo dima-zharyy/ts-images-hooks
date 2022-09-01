@@ -1,7 +1,7 @@
-import React from 'react';
-import { ToastContainer, toast } from 'react-toastify';
+import React from "react";
+import { ToastContainer, toast } from "react-toastify";
 
-export const Notification = () => {
+export const Notification: React.FC = () => {
   return (
     <ToastContainer
       position="top-right"
@@ -18,9 +18,9 @@ export const Notification = () => {
   );
 };
 
-export const notify = message => {
+export const notify = (message: string) => {
   toast.info(message, {
-    position: 'top-right',
+    position: "top-right",
     autoClose: 4000,
     hideProgressBar: true,
     closeOnClick: true,

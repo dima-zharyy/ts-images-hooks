@@ -1,20 +1,23 @@
-import { useState } from 'react';
-import { Header, Form, Button, Input } from './Searchbar.styled';
-import { ImSearch } from 'react-icons/im';
-import PropTypes from 'prop-types';
-import 'react-toastify/dist/ReactToastify.min.css';
+import React, { useState } from "react";
+import { Header, Form, Button, Input } from "./Searchbar.styled";
+import { ImSearch } from "react-icons/im";
+import "react-toastify/dist/ReactToastify.min.css";
 
-export const Searchbar = ({ onSubmit }) => {
-  const [query, setQuery] = useState('');
+interface ISearchbarProps {
+  onSubmit: (query: string[]) => void;
+}
 
-  const handleSubmit = event => {
+export const Searchbar: React.FC<ISearchbarProps> = ({ onSubmit }) => {
+  const [query, setQuery] = useState("");
+
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
     event.preventDefault();
 
     onSubmit([query.toLowerCase().trim()]);
-    setQuery('');
+    setQuery("");
   };
 
-  const handleInputChange = event => {
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setQuery(event.target.value);
   };
 
@@ -35,8 +38,4 @@ export const Searchbar = ({ onSubmit }) => {
       </Form>
     </Header>
   );
-};
-
-Searchbar.propTypes = {
-  onSubmit: PropTypes.func.isRequired,
 };

@@ -1,4 +1,4 @@
-import styled from '@emotion/styled';
+import styled from "@emotion/styled";
 
 export const Header = styled.header`
   top: 0;
@@ -44,7 +44,11 @@ export const Button = styled.button`
   }
 `;
 
-export const Input = styled.input`
+interface IInput {
+  autocomplete: string;
+}
+
+export const Input = styled.input<IInput>`
   display: inline-block;
   width: 100%;
   height: 100%;

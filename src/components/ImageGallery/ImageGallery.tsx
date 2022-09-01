@@ -1,15 +1,27 @@
-import React from 'react';
-import { ImageGalleryItem } from 'components';
-import { List } from './ImageGallery.styled';
-import PropTypes from 'prop-types';
+import React from "react";
+import { ImageGalleryItem } from "components";
+import { List } from "./ImageGallery.styled";
 
-export const ImageGallery = ({ images, onOpenModal }) => {
+interface IGalleryProps {
+  images: Array<{
+    webformatURL: string;
+    tags: string;
+    largeImageURL: string;
+    id: number;
+  }>;
+  onOpenModal: (event: React.MouseEvent<HTMLImageElement>) => void;
+}
+
+export const ImageGallery: React.FC<IGalleryProps> = ({
+  images,
+  onOpenModal,
+}) => {
   return (
     <List>
-      {images.map(image => {
+      {images.map((image) => {
         return (
           <ImageGalleryItem
-            onClick={event => onOpenModal(event)}
+            onClick={(event) => onOpenModal(event)}
             imageSrc={image.webformatURL}
             imageAlt={image.tags}
             imageLarge={image.largeImageURL}
@@ -19,16 +31,4 @@ export const ImageGallery = ({ images, onOpenModal }) => {
       })}
     </List>
   );
-};
-
-ImageGallery.propTypes = {
-  images: PropTypes.arrayOf(
-    PropTypes.exact({
-      id: PropTypes.number.isRequired,
-      webformatURL: PropTypes.string.isRequired,
-      tags: PropTypes.string.isRequired,
-      largeImageURL: PropTypes.string.isRequired,
-    })
-  ),
-  onOpenModal: PropTypes.func.isRequired,
 };
